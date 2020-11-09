@@ -138,7 +138,7 @@ const dataWheels = [
 ]
 const carList = new CarList();
 const wheelsList = new WheelsList();
-let carColorChosen =  {
+let carColorChosen = {
   "id": 1,
   "title": "Crystal Black",
   "type": "Pearl",
@@ -167,23 +167,15 @@ let carColorChosen =  {
   ]
 };
 
-// const showCarCurrent = () => {
-//   let model = document.getElementById("model");
-//   model.innerHTML = `<div id="carCurrent"
-//   class="cloudimage-360"
-//   data-folder="./images/images-black/images-black-1/"
-//   data-filename="civic-{index}.jpg"
-//   data-amount="8">
-// </div>`;
+const clearCarCurrent = () => {
+  let carCurrent = document.getElementById("carCurrent");
+  carCurrent.innerHTML = "";
+  let tagScript = document.createElement("script");
+  tagScript.src = "https://cdn.scaleflex.it/filerobot/js-cloudimage-360-view/v2.0.0.lazysizes.min.js";
+  document.querySelector(".appendScript").innerHTML = "";
+  document.querySelector(".appendScript").appendChild(tagScript);
 
-// document.querySelector("#carCurrent").innerHTML = "";
-// let tagScript = document.createElement("script");
-// tagScript.src = "https://cdn.scaleflex.it/filerobot/js-cloudimage-360-view/v2.0.0.lazysizes.min.js";
-// document.querySelector(".appendScript").innerHTML = "";
-// document.querySelector(".appendScript").appendChild(tagScript);
-
-// }
-// showCarCurrent(); 
+}
 
 const showCarColor = () => {
   let showCarDiv = document.getElementById("show-car-color");
@@ -214,26 +206,25 @@ const changeNewCar = (e) => {
     }
   });
   showCarChosen(carColorChosen);
-
 }
 const showCarChosen = (carColorChosen) => {
+  clearCarCurrent();
   let carCurrent = document.getElementById("carCurrent");
-  let srcImgNew = "./images/" +  carColorChosen.srcImg; 
+  let srcImgNew = "./images/" + carColorChosen.srcImg;
   carCurrent.setAttribute("data-folder", srcImgNew);
-  console.log(srcImgNew); 
-  console.log(carColorChosen.srcImg);
+
 }
-window.changeNewCar = changeNewCar; 
+window.changeNewCar = changeNewCar;
 
 const changeWheels = (e) => {
-  let dataIdWheels = e.currentTarget.getAttribute("data-id"); 
-  let newWheels = null; 
-  newWheels = carColorChosen.wheels.find(wheel => wheel.idWheel == dataIdWheels); 
-  console.log(newWheels); 
-    if (newWheels !== null){
-      carColorChosen = {...carColorChosen, srcImg: newWheels.srcImg};
-      console.log(carColorChosen); 
-    }
+  let dataIdWheels = e.currentTarget.getAttribute("data-id");
+  let newWheels = null;
+  newWheels = carColorChosen.wheels.find(wheel => wheel.idWheel == dataIdWheels);
+  if (newWheels !== null) {
+    carColorChosen = { ...carColorChosen, srcImg: newWheels.srcImg };
+    showCarChosen(carColorChosen);
+  }
+
 
 }
 window.changeWheels = changeWheels; 
