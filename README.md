@@ -1,3 +1,7 @@
+This Rotate 360 Car Project using Vanilla javascript and 360 degree rotate library. 
+
+Features: 
+
 Applied Vannila Javascripit to render color, wheels. 
 Using 360 degree librabry to rotate car. 
 Change color, wheels when choosing icons. 
